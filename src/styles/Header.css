@@ -1,0 +1,21 @@
+.App-header {
+    background-color: #282c34;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 40px;
+    text-align: center;
+    box-shadow: 1px 3px 5px #ccc;
+    margin-bottom: 70px;
+}
+
+.App-logo {
+    float: left;
+    height: 50px;
+}
+
+.header-title {
+    display: inline-block;
+    padding-right: 90px;
+    color: #FFF;
+    text-transform: uppercase;
+}
