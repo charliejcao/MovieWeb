@@ -32,7 +32,7 @@ export class Main extends React.Component {
     };
 
     componentDidMount() {
-        const url = "https://api.themoviedb.org/3/movie/popular?api_key=60249961fe048e2303317aa3a5696c8f&language=en-US&page=1";
+        const url = "https://api.themoviedb.org/3/movie/popular?api_key=<<api_key>>&language=en-US&page=1";
         fetch(url)
             .then(res => res.json())
             .then(json => {
