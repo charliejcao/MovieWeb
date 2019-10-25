@@ -49,3 +49,11 @@
 .detail-popularity {
     margin-top: 10px;
 }
+
+.detail-votercount {
+    margin-top: 10px;
+}
+
+.detail-btn {
+    float: right;
+}

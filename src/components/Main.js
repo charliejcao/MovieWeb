@@ -1,10 +1,11 @@
-import React from "react";
+import React from 'react';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Popover from '@material-ui/core/Popover';
+import { POP_MOVIE_URL } from '../constants';
 
 export class Main extends React.Component {
     constructor(props) {
@@ -17,10 +18,21 @@ export class Main extends React.Component {
         }
     }
 
+    componentDidMount() {
+        fetch(POP_MOVIE_URL)
+            .then(res => res.json())
+            .then(json => {
+                this.setState({
+                    isLoaded: true,
+                    movies: json.results
+                })
+            });
+    }
+
     handleClick(e) {
         e.preventDefault();
         this.setState({
-            pop_open: !this.state.pop_open,
+            pop_open: true,
             anchorEl: e.currentTarget,
         });
     }
@@ -31,21 +43,8 @@ export class Main extends React.Component {
         });
     };
 
-    componentDidMount() {
-        const url = "https://api.themoviedb.org/3/movie/popular?api_key=60249961fe048e2303317aa3a5696c8f&language=en-US&page=1";
-        fetch(url)
-            .then(res => res.json())
-            .then(json => {
-                this.setState({
-                    isLoaded: true,
-                    movies: json.results
-                })
-            });
-    }
-
     render() {
         let {isLoaded, movies} = this.state;
-        console.log(movies);
 
         if (!isLoaded) {
             return <div>Loading...</div>
@@ -78,14 +77,15 @@ export class Main extends React.Component {
                                     onClick={this.handleClick.bind(this)}>
                                 See Detail
                             </Button>
+
                             <Popover
                                 open={this.state.pop_open}
                                 anchorEl={this.state.anchorEl}
                                 anchorOrigin={{horizontal: 'center', vertical: 'bottom'}}
                                 transformOrigin={{horizontal: 'center', vertical: 'top'}}
-                                onRequestClose={this.handleRequestClose.bind(this)}
                             >
-                                <Card className="detail-card" key={movie.id}>
+
+                                <Card className="detail-card">
                                     <img
                                         className="movie-img"
                                         src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
@@ -103,6 +103,13 @@ export class Main extends React.Component {
                                         <Typography className="detail-popularity">
                                             Popularity: {movie.popularity}
                                         </Typography>
+                                        <Typography className="detail-votercount">
+                                            Voter Count: {movie.vote_count}
+                                        </Typography>
+                                        <Button size="small" color="primary" type="submit" className="detail-btn"
+                                                onClick={this.handleRequestClose.bind(this)}>
+                                            Close
+                                        </Button>
                                     </CardContent>
                                 </Card>
                             </Popover>
