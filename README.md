@@ -6,6 +6,8 @@
 
 - Use "npm start" to run.
 
+
+
 ### Attention:
 Due to the database privacy of "The Movie Database API", I remove 32 digit API key, and put <<api_key>> as a holder of the key value. (in file src/components/Main.js)
 
