@@ -7,15 +7,11 @@ import Typography from '@material-ui/core/Typography';
 import Popover from '@material-ui/core/Popover';
 import { POP_MOVIE_URL } from '../constants';
 
-export class Main extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            movies: [],
-            isLoaded: false,
-            pop_open: false
-        }
+class Main extends React.Component {
+    state = {
+        movies: [],
+        isLoaded: false,
+        pop_open: false
     }
 
     componentDidMount() {
@@ -29,7 +25,7 @@ export class Main extends React.Component {
             });
     }
 
-    handleClick(e) {
+    handleClick = e => {
         e.preventDefault();
         this.setState({
             pop_open: true,
@@ -37,7 +33,7 @@ export class Main extends React.Component {
         });
     }
 
-    handleRequestClose() {
+    handleRequestClose = () => {
         this.setState({
             pop_open: false,
         });
@@ -120,3 +116,5 @@ export class Main extends React.Component {
         );
     }
 }
+
+export default Main;
